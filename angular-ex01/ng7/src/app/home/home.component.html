@@ -1,7 +1,10 @@
-<h1 [ngStyle]="{
-  'color': h1Style ? 'gray' : 'black',
-  'font-size': !h1Style ? '1em' : '4em'
-}">Hello, Dave</h1>
+<h1>Home</h1>
 
-<!--Creating an event-binded method for click -->
-<button (click)="firstClick()">Click Me</button>
+<!-- *ngIf: Only show this ul element if "users" has data" --> 
+<ul *ngIf="users">
+  <!-- *ngFor: Used for for loop to iterate through array of objects -->
+  <li *ngFor="let user of users.data">
+    <img [src]="user.avatar">
+    <p>{{ user.first_name }} {{ user.last_name }}</p>
+  </li>
+</ul>

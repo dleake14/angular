@@ -1,3 +1,37 @@
-<p>
-  contact works!
-</p>
+<h1>Contact Us</h1>
+
+<form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+
+    <h5 *ngIf="success">Your form is valid</h5>
+
+    <label>
+      Name: 
+      <input type="text" formControlName="name">
+      <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
+        <!--This allows to have different and specific error messages for invalid input -->
+        <div *ngIf="messageForm.controls.name.errors.required">Your name is required</div>
+      </div>
+    </label>
+
+
+    <label>
+        Messgage: 
+        <textarea formControlName="message"></textarea>
+        <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
+          <!--This allows to have different and specific error messages for invalid input -->
+          <div *ngIf="messageForm.controls.name.errors.required">A message is required</div>
+        </div>
+      </label>
+
+      <input type="submit" value="Send Message" class="cta">
+
+
+</form>
+
+<div *ngIf="submitted" class="result">
+  <strong>Name:</strong>
+  <span>{{ messageForm.controls.name.value }}</span>
+<br>
+  <strong>Message:</strong>
+  <span>{{ messageForm.controls.message.value }}</span>
+</div>
